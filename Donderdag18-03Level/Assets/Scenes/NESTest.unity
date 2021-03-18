@@ -499,6 +499,11 @@ PrefabInstance:
       objectReference: {fileID: 1265412217}
     - target: {fileID: 1203772652394959711, guid: 6b461db83852594448030415eea20529,
         type: 3}
+      propertyPath: healthTxt
+      value: 
+      objectReference: {fileID: 1265412217}
+    - target: {fileID: 1203772652394959711, guid: 6b461db83852594448030415eea20529,
+        type: 3}
       propertyPath: flashlight
       value: 
       objectReference: {fileID: 841956336}

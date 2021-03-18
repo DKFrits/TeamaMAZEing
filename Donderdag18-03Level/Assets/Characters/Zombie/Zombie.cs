@@ -18,6 +18,9 @@ public class Zombie : SimpleZombieFSM
     private readonly int walkAnim = 1;
     private readonly int attackAnim = 2;
     private readonly int runAnim = 3;
+    private readonly int danceAnim = 9;
+
+    private bool zombieMustDance;
 
     // player information
     private Transform playerTransform;
@@ -34,7 +37,8 @@ public class Zombie : SimpleZombieFSM
         Idle,
         Walk,
         Attack,
-        Run
+        Run,
+        Dance
     }
 
     public ZombieState curState;
@@ -43,7 +47,7 @@ public class Zombie : SimpleZombieFSM
 
     protected override void Initialize()
     {
-
+        mustDance = false;
         curState = ZombieState.Idle;
 
         // get player transform
@@ -62,6 +66,7 @@ public class Zombie : SimpleZombieFSM
             case ZombieState.Walk: UpdateWalkState(); break;
             case ZombieState.Attack: UpdateAttackState(); break;
             case ZombieState.Run: UpdateRunState(); break;
+            case ZombieState.Dance: UpdateDanceState(); break;
         }
 
         // Debug.Log("curstate:: " + curState);
@@ -72,6 +77,11 @@ public class Zombie : SimpleZombieFSM
     {
 
         anim.SetInteger(zombieAnimationVariable, idleAnim);
+
+        if (zombieMustDance)
+        {
+            curState = ZombieState.Dance;
+        }
 
         var closeEnough = (Vector3.Distance(transform.position, playerTransform.position) <= maxWalkRange);
         if (closeEnough)
@@ -84,6 +94,11 @@ public class Zombie : SimpleZombieFSM
     {
 
         WalkTowardsPlayer();
+
+        if (zombieMustDance)
+        {
+            curState = ZombieState.Dance;
+        }
 
         var outOfRange = (Vector3.Distance(transform.position, playerTransform.position) >= maxWalkRange);
         if (outOfRange)
@@ -108,6 +123,12 @@ public class Zombie : SimpleZombieFSM
     private void UpdateAttackState()
     {
         AttackPlayer();
+
+        if (zombieMustDance)
+        {
+            curState = ZombieState.Dance;
+        }
+
         var outOfAttackRange = (Vector3.Distance(transform.position, playerTransform.position) >= maxAttackRange);
         if (outOfAttackRange)
         {
@@ -125,6 +146,11 @@ public class Zombie : SimpleZombieFSM
     {
 
         RunTowardsPlayer();
+
+        if (zombieMustDance)
+        {
+            curState = ZombieState.Dance;
+        }
 
         var inAttackRange = (Vector3.Distance(transform.position, playerTransform.position) <= maxAttackRange);
         if (inAttackRange)
@@ -212,5 +238,17 @@ public class Zombie : SimpleZombieFSM
         }
         return false;
     }
-    
+
+    public void TurnZombie()
+    {
+        zombieMustDance = true;
+    }
+
+    public void UpdateDanceState()
+    {
+        agent.speed = 0f;
+        anim.SetInteger(zombieAnimationVariable, danceAnim);
+    }
+
+
 }
