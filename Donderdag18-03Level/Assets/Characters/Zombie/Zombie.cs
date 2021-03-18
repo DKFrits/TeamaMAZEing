@@ -47,7 +47,7 @@ public class Zombie : SimpleZombieFSM
 
     protected override void Initialize()
     {
-        mustDance = false;
+        zombieMustDance = false;
         curState = ZombieState.Idle;
 
         // get player transform
