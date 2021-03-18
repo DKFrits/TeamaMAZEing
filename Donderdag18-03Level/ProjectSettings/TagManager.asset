@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HealthBar
   - PlayAgain
+  - Door
   layers:
   - Default
   - TransparentFX
