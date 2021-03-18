@@ -16,7 +16,6 @@ public class Interactable : MonoBehaviour
 	void Start()
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
-		Debug.Log(player);
 	}
 
 	public virtual void Update()
@@ -38,7 +37,6 @@ public class Interactable : MonoBehaviour
 	{
 		if (Input.GetKey(KeyCode.E)) // close and pick up (P pressed)
 		{
-			Debug.Log("E pressed");
 			Interact();
 		}
 	}

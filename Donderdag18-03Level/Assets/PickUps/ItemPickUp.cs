@@ -21,10 +21,7 @@ public class ItemPickUp : Interactable
 
     public virtual void PickUp()
     {
-        Debug.Log("picking up " + itemName);
-
         AddHealthToPlayer();
-
         PlayPickupSound();
         Destroy(gameObject);
         

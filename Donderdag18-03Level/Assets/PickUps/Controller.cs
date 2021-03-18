@@ -21,11 +21,12 @@ public class Controller : Interactable
 
     public virtual void PickUp()
     {
-        Debug.Log("picking up " + itemName);
-        AddControllerToPlayer();
-        // PlayPickupSound();
-        Destroy(gameObject);
-
+        if (gameObject.tag != "NotInteractable")
+        {
+            AddControllerToPlayer();
+            // PlayPickupSound();
+            Destroy(gameObject);
+        }
     }
 
     void PlayPickupSound()

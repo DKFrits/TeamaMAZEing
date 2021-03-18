@@ -178,12 +178,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f4e5dd2165039f4a878d1c1260761df, type: 3}
---- !u!108 &841956336 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 8352138911056689680, guid: 6b461db83852594448030415eea20529,
-    type: 3}
-  m_PrefabInstance: {fileID: 1734727922}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1265412217 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8704140765900736812, guid: ccde52e4ffb4a05429c05b4347477e0f,
@@ -461,11 +455,6 @@ PrefabInstance:
       propertyPath: healthTxt
       value: 
       objectReference: {fileID: 1265412217}
-    - target: {fileID: 1203772652394959711, guid: 6b461db83852594448030415eea20529,
-        type: 3}
-      propertyPath: flashlight
-      value: 
-      objectReference: {fileID: 841956336}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b461db83852594448030415eea20529, type: 3}
 --- !u!1 &1809265257

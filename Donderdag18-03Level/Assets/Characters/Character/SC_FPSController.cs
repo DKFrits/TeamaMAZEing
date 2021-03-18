@@ -22,6 +22,8 @@ public class SC_FPSController : MonoBehaviour
     public float lookXLimit = 45.0f;
     public float rayDistance = 10f;
     public Light flashlight;
+    public GameObject NESController;
+    private int zombiesTurned = 0;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -119,7 +121,8 @@ public class SC_FPSController : MonoBehaviour
 
     public void AddController()
     {
-        //Chris hier moet je code komen
+        Debug.Log("xd");
+        NESController.SetActive(true);
     }
 
     private void Interact()
@@ -130,10 +133,27 @@ public class SC_FPSController : MonoBehaviour
             Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.green);
 
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, rayDistance) && hit.transform.tag == "Door")
+            if (Physics.Raycast(ray, out hit, rayDistance))
             {
-                Animator doorAnimator = hit.collider.GetComponentInParent<Animator>();
-                doorAnimator.SetBool("open", !doorAnimator.GetBool("open"));
+                if (hit.transform.tag == "Door")
+                {
+                    Animator doorAnimator = hit.collider.GetComponentInParent<Animator>();
+                    doorAnimator.SetBool("open", !doorAnimator.GetBool("open"));
+                }
+
+                if (hit.transform.tag == "Zombie")
+                {
+                    if (NESController.activeSelf)
+                    {
+                        var zombieObject = hit.collider.GetComponent<Zombie>();
+                        zombieObject.TurnZombie();
+                        zombiesTurned++;
+                        if (zombiesTurned > 1)
+                        {
+                            healthTxt.text = "YOU WIN!";
+                        }
+                    }
+                }
             }
         }
     }

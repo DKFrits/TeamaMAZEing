@@ -367,7 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 3
   itemPickUpSound: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 1203772652394959710, guid: 6b461db83852594448030415eea20529, type: 3}
 --- !u!1 &7098603566311749074
 GameObject:
   m_ObjectHideFlags: 0
