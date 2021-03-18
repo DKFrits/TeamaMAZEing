@@ -11,7 +11,8 @@ public class SC_FPSController : MonoBehaviour
 
     public int health;
 
-    public Text txt;
+    public Text healthTxt;
+    public Text controllerTxt;
 
     public float walkingSpeed = 7.5f;
     public float runningSpeed = 11.5f;
@@ -29,6 +30,8 @@ public class SC_FPSController : MonoBehaviour
 
     [HideInInspector]
     public bool canMove = true;
+
+    private bool hasController;
 
     void Start()
     {
@@ -108,13 +111,21 @@ public class SC_FPSController : MonoBehaviour
     public void UpdateHealthBar()
     {
         var newText = "health: " + health;
-        txt.GetComponent<Text>().text = newText;
+        healthTxt.GetComponent<Text>().text = newText;
     }
 
     private void HUDInit()
     {
+        hasController = false;
         var newText = "health: " + health;
-        txt.GetComponent<Text>().text = newText;
+        healthTxt.GetComponent<Text>().text = newText;
+    }
+
+    public void AddController()
+    {
+        var newText = "Controller: picked up";
+        controllerTxt.GetComponent<Text>().text = newText;
+        bool hasController = true;
     }
 
     private void Interact()
