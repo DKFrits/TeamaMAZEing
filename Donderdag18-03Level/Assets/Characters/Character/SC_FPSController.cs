@@ -19,6 +19,8 @@ public class SC_FPSController : MonoBehaviour
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
+    public float rayDistance = 10f;
+    public Light flashlight;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -78,6 +80,9 @@ public class SC_FPSController : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+
+        Interact();
+        Flashlight();
     }
 
     public void reduceHealthByOne()
@@ -102,5 +107,30 @@ public class SC_FPSController : MonoBehaviour
     {
         var newText = "health: " + health;
         txt.GetComponent<Text>().text = newText;
+    }
+
+    private void Interact()
+    {
+        if (Input.GetButtonDown("Submit"))
+        {
+            var ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+            Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.green);
+
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, rayDistance) && hit.transform.tag == "Door")
+            {
+                Debug.Log(hit.collider.name);
+                Animator doorAnimator = hit.collider.GetComponentInParent<Animator>();
+                doorAnimator.SetBool("open", !doorAnimator.GetBool("open"));
+            }
+        }
+    }
+
+    private void Flashlight()
+    {
+        if (Input.GetButtonDown("Fire2"))
+        {
+            flashlight.enabled = !flashlight.enabled;
+        }
     }
 }
