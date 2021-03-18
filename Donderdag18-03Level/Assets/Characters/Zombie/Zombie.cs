@@ -27,6 +27,7 @@ public class Zombie : SimpleZombieFSM
     private float attackTimer;
     private float damageTime = 0.7f;
 
+
     public enum ZombieState
     {
         None,
@@ -211,4 +212,5 @@ public class Zombie : SimpleZombieFSM
         }
         return false;
     }
+    
 }
