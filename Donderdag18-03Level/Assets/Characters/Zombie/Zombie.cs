@@ -54,7 +54,7 @@ public class Zombie : SimpleZombieFSM
             case ZombieState.Attack: UpdateAttackState(); break;
         }
 
-        Debug.Log("curstate:: " + curState);
+        // Debug.Log("curstate:: " + curState);
 
     }
 
@@ -102,7 +102,7 @@ public class Zombie : SimpleZombieFSM
 
     private void WalkTowardsPlayer()
     {
-        Debug.Log("afstand:: " + Vector3.Distance(transform.position, playerTransform.position));
+        // Debug.Log("afstand:: " + Vector3.Distance(transform.position, playerTransform.position));
         // set walking animation
         anim.SetInteger(zombieAnimationVariable, walkAnim);
 

@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 
 public class SC_FPSController : MonoBehaviour
 {
+
+    public int health;
+
+    public Text txt;
+
     public float walkingSpeed = 7.5f;
     public float runningSpeed = 11.5f;
     public float jumpSpeed = 8.0f;
@@ -23,6 +29,8 @@ public class SC_FPSController : MonoBehaviour
 
     void Start()
     {
+        HUDInit();
+
         characterController = GetComponent<CharacterController>();
 
         // Lock cursor
@@ -70,5 +78,29 @@ public class SC_FPSController : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+    }
+
+    public void reduceHealthByOne()
+    {
+        health -= 1;
+        UpdateHealthBar();
+    }
+
+    public void addOneHealth()
+    {
+        health += 1;
+        UpdateHealthBar();
+    }
+
+    public void UpdateHealthBar()
+    {
+        var newText = "health: " + health;
+        txt.GetComponent<Text>().text = newText;
+    }
+
+    private void HUDInit()
+    {
+        var newText = "health: " + health;
+        txt.GetComponent<Text>().text = newText;
     }
 }
