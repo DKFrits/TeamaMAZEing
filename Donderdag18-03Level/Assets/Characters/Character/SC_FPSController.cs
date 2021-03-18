@@ -127,7 +127,6 @@ public class SC_FPSController : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, rayDistance) && hit.transform.tag == "Door")
             {
-                Debug.Log(hit.collider.name);
                 Animator doorAnimator = hit.collider.GetComponentInParent<Animator>();
                 doorAnimator.SetBool("open", !doorAnimator.GetBool("open"));
             }
