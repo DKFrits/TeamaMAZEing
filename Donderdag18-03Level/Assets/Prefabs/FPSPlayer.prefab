@@ -238,7 +238,7 @@ MonoBehaviour:
   lookSpeed: 2
   lookXLimit: 45
   rayDistance: 10
-  flashlight: {fileID: 0}
+  flashlight: {fileID: 8352138911056689680}
   canMove: 1
 --- !u!114 &5828528239930975984
 MonoBehaviour:
@@ -416,6 +416,12 @@ PrefabInstance:
 --- !u!4 &8252827760838576096 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4777606630871252, guid: d86ca2f4159e6a942abd8dfc52b38395,
+    type: 3}
+  m_PrefabInstance: {fileID: 8257092814661752628}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &8352138911056689680 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 108038271100546340, guid: d86ca2f4159e6a942abd8dfc52b38395,
     type: 3}
   m_PrefabInstance: {fileID: 8257092814661752628}
   m_PrefabAsset: {fileID: 0}
