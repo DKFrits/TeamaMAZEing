@@ -22,6 +22,12 @@ public class Zombie : SimpleZombieFSM
     // player information
     private Transform playerTransform;
 
+    // attack/hit variables
+    private bool setAttackTimer;
+    private float attackTimer;
+    private float damageTime = 0.7f;
+
+
     public enum ZombieState
     {
         None,
@@ -88,6 +94,7 @@ public class Zombie : SimpleZombieFSM
         var inAttackRange = (Vector3.Distance(transform.position, playerTransform.position) <= maxAttackRange);
         if (inAttackRange)
         {
+            setAttackTimer = true;
             curState = ZombieState.Attack;
         }
 
@@ -122,6 +129,7 @@ public class Zombie : SimpleZombieFSM
         var inAttackRange = (Vector3.Distance(transform.position, playerTransform.position) <= maxAttackRange);
         if (inAttackRange)
         {
+            setAttackTimer = true;
             curState = ZombieState.Attack;
         }
 
@@ -177,13 +185,32 @@ public class Zombie : SimpleZombieFSM
 
         // if attack animation is on for 1 sec -> player is hit
         
-        var hit = false;
+        var hit = PlayerDamaged();
         if (hit)
         {
             GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
             playerTransform = objPlayer.transform;
             var script = objPlayer.GetComponent<SC_FPSController>();
             script.reduceHealthByOne();
+            setAttackTimer = true;
         }
     }
+
+    private bool PlayerDamaged()
+    {
+        if (setAttackTimer)
+        {
+            attackTimer = Time.time;
+            setAttackTimer = false;
+        }
+        else
+        {
+            if (attackTimer + damageTime < Time.time)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
 }
