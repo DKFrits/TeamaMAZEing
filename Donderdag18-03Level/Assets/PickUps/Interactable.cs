@@ -23,8 +23,6 @@ public class Interactable : MonoBehaviour
 	{
 		if ((player.transform.position - this.transform.position).sqrMagnitude < radius * radius)
 		{
-			PlayerIsCloseInteraction();
-
 			Action();
 		}
 	}
@@ -43,11 +41,6 @@ public class Interactable : MonoBehaviour
 			Debug.Log("E pressed");
 			Interact();
 		}
-	}
-
-	public virtual void PlayerIsCloseInteraction()
-	{
-		Debug.Log("i am close");
 	}
 
 }

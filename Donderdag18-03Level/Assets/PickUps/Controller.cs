@@ -23,7 +23,7 @@ public class Controller : Interactable
     {
         Debug.Log("picking up " + itemName);
         AddControllerToPlayer();
-        PlayPickupSound();
+        // PlayPickupSound();
         Destroy(gameObject);
 
     }
